@@ -1,15 +1,41 @@
 %!TEX root = ../thesis.tex
 
 \section{背景}
-\subsection{RoboCup}
+近年, 様々なセンサを用いた自律移動に関する研究が活発に行われており, その中で視覚を入力としたend-to-end学習により自律走行した例もある. 例えば, Bojaskiらは\figref{Fig:bojaski}に示すシステムでカメラ画像と人が操作するステアリングの角度をend-to-end学習することで, 自律走行する手法を提案した\cite{bojaski}.
 
 \begin{figure}[hbtp]
-  \centering
- \includegraphics[keepaspectratio, scale=0.8]
-      {images/RaspberryPiMouse.png}
- \caption{Example}
- \label{Fig:Example}
+\centering
+\includegraphics[keepaspectratio, scale=0.5]
+{images/bojaski.png}
+\caption{Training the neural network from \cite{bojaski}}
+\label{Fig:bojaski}
 \end{figure}
 
-\subsubsection{etc...}
 \newpage
+また, 岡田ら(以下｢先行研究｣と称する)により\figref{Fig:tsudanuma18}のように地図ベースのナビゲーションによる出力を模倣することで, 経路追従行動を獲得した\cite{okada-si}. \figref{Fig:okada-method}に示すような, LiDAR, オドメトリを入力としたナビゲーションの出力をend-to-endで模倣学習し, 学習後はカメラ画像を入力とした学習器の出力により, 一定の経路において周回が可能であることが確認された. 
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.15]
+     {images/tsudanuma18.png}
+     \caption{Driving with output from map-based navigation indoors from \cite{okada-si}}
+     \label{Fig:tsudanuma18}
+     \end{figure}
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.45]
+     {images/okada-method.png}
+     \caption{Okada and others proposed method from \cite{okada-si}}
+     \label{Fig:okada-method}
+     \end{figure}
+
+% \newpage
+カメラ画像を入力とした学習器の出力により, ロボットが学習した経路を周回可能であることが示されている. 次に, 先行研究を基に, 新たなデータセットの収集方法を考案する.
+
+\section{目的}
+本研究では, 先行研究を基に, 新たなデータセットの収集方法を提案する. 提案手法の有効性をシミュレータを用いた実験により検証することを目的とする. 
+
+\section{論文構成}
+本論文の構成は以下に述べる通りである. 第1章では, 研究を行う背景や目的を述べた. 
+     
