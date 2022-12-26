@@ -1,6 +1,6 @@
 %!TEX root = ../thesis.tex
 
-本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練時, テスト時の3節に分けて紹介する.
+本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練時, 実験の3節に分けて紹介する.
 
 \section{手法1}
 
@@ -35,21 +35,68 @@
 
 \newpage
 \subsection{訓練時}
-\subsubsection{ネットワークの構造}
+\paragraph{ネットワークの構造}
 \figref{Fig:cnn}に訓練時に用いたネットワークの構造を示す. 構造は, 入力層1, 畳み込み層3, 全結合層2, 出力層1の計7層から構成されている. 
+
+\vspace{5mm}
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.42]{images/cnn.png}
+  \caption{Structure of network}
+  \label{Fig:cnn}
+  \end{figure}
+
+\paragraph{訓練}
+バッチサイズ8, データ量2658, ミニバッチ学習で4000step, 8000step, 10000step学習した.
+
+\subsection{実験1}
+\paragraph{実験目的}
+シミュレータ上で実験を行い, 提案手法の有効性を検証する.
+
+\paragraph{実験装置}
+シミュレータを用いた実験では, データの収集方法と同様にWillow Garageを使用した. また, ロボットモデルには\figref{Fig:turtlebot3}に示すようなカメラを3つ搭載したTurtlebot3を用いた. 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.5]{images/cnn.png}
-  \caption{Structure of network}
-  \label{Fig:cnn}
+  \includegraphics[keepaspectratio, scale=0.42]{images/turtlebot3.png}
+  \caption{Turtlebot3 waffle with 3 cameras}
+  \label{Fig:turtlebot3}
+  \end{figure}
+
+\newpage
+\paragraph{実験方法}
+シミュレータを用いた実験では, \figref{Fig:willow-garage}で示した経路で実験を行う. 壁に衝突せずに一周できた場合を成功とし, 壁に激突したり, コースアウトして経路に復帰できなかった場合を失敗とした.
+
+\paragraph{実験結果}
+実験結果は, \ref{tb:exp1}のようになった.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|} \hline
+    step & Number of successes \\ \hline
+    4000 & 0/10 \\ \hline
+    8000 & 0/10 \\ \hline
+    10000 & 0/10 \\ \hline
+  \end{tabular}
+  \caption{Number of successes in the experiment1}
+  \label{tb:exp1}
+\end{table}
+
+\paragraph{考察}
+学習量を増やしても成功回数は増えなかっため, 収集した角速度を\figref{Fig:exp1}のようにヒストグラムにした. 縦軸はデータ数, 横軸は角速度(rad/sec)を表している. これより, 経路上及び経路周辺のデータ(-0.1から+0.1)が全体の30％程度しかないことが分かる. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp1.png}
+  \caption{Histogram of collected angular velocities}
+  \label{Fig:exp1}
   \end{figure}
 
 \newpage
 \section{手法2}
 
 \subsection{データの収集方法}
-\figref{Fig:collect-data}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.01, ±0.02, ±0.04, ±0.06, ±0.08, ±0.10, ±0.15, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて画像とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. これを\figref{Fig:willow-garage}に示すコースで一周行う. 
+手法1を踏まえて, 経路周辺のデータを多く取得する手法を試みる. \figref{Fig:collect-data}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.01, ±0.02, ±0.04, ±0.06, ±0.08, ±0.10, ±0.15, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて画像とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. これを\figref{Fig:willow-garage}に示すコースで一周行う. 
 
 \vspace{10mm}
 
