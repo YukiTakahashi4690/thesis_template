@@ -1,6 +1,6 @@
 %!TEX root = ../thesis.tex
 
-本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練時, 実験の3節に分けて紹介する.
+本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練, 実験の3節に分けて紹介する.
 
 \section{手法1}
 
@@ -34,7 +34,7 @@
   \end{figure}
 
 \newpage
-\subsection{訓練時}
+\subsection{訓練1}
 \paragraph{ネットワークの構造}
 \figref{Fig:cnn}に訓練時に用いたネットワークの構造を示す. 構造は, 入力層1, 畳み込み層3, 全結合層2, 出力層1の計7層から構成されている. 
 
@@ -68,7 +68,7 @@
 シミュレータを用いた実験では, \figref{Fig:willow-garage}で示した経路で実験を行う. 壁に衝突せずに一周できた場合を成功とし, 壁に激突したり, コースアウトして経路に復帰できなかった場合を失敗とした.
 
 \paragraph{実験結果}
-実験結果は, \ref{tb:exp1}のようになった.
+実験結果は, \ref{tb:exp1}, 失敗箇所は\figref{Fig:result1}のようになった. 青色の×は壁への衝突箇所を示している. 
 
 \begin{table}[h]
   \centering
@@ -82,13 +82,20 @@
   \label{tb:exp1}
 \end{table}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.5]{images/result1.png}
+  \caption{Failure point of the experiment1}
+  \label{Fig:result1}
+  \end{figure}
+
 \paragraph{考察}
-学習量を増やしても成功回数は増えなかっため, 収集した角速度を\figref{Fig:exp1}のようにヒストグラムにした. 縦軸はデータ数, 横軸は角速度(rad/sec)を表している. これより, 経路上及び経路周辺のデータ(-0.1から+0.1)が全体の30％程度しかないことが分かる. 
+学習量を増やしても成功回数は増えなかった.  また, 目標経路から離れた際に戻る挙動や, 壁に近づきすぎた際に避ける挙動も見られなかった. そこで, 収集した角速度を\figref{Fig:exp1}のようにヒストグラムにした. これより, 経路上及び経路周辺のデータ(0から0.1)が全体の40％程度しかないことが分かる. 経路追従をするためには, 経路上及び経路周辺のデータが多くなければならないと考えた. 
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.5]{images/exp1.png}
-  \caption{Histogram of collected angular velocities}
+  \includegraphics[keepaspectratio, scale=0.6]{images/exp1.png}
+  \caption{Histogram of collected angular velocities in the experiment1}
   \label{Fig:exp1}
   \end{figure}
 
@@ -96,9 +103,7 @@
 \section{手法2}
 
 \subsection{データの収集方法}
-手法1を踏まえて, 経路周辺のデータを多く取得する手法を試みる. \figref{Fig:collect-data}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.01, ±0.02, ±0.04, ±0.06, ±0.08, ±0.10, ±0.15, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて画像とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. これを\figref{Fig:willow-garage}に示すコースで一周行う. 
-
-\vspace{10mm}
+手法1を踏まえて, 経路周辺のデータを多く取得する手法を試みる. \figref{Fig:collect-data}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.01, ±0.02, ±0.04, ±0.06, ±0.08, ±0.10, ±0.15, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, 手法1と同様にロボットを傾けて画像と角速度を\figref{Fig:collect-data2}のように収集する. これを\figref{Fig:willow-garage}に示すコースで一周行う. 
 
 \begin{figure}[h]
   \centering
@@ -107,5 +112,72 @@
   \label{Fig:collect-data}
   \end{figure}
 
+\vspace{15mm}
+\subsection{訓練2-1}
+
+\paragraph{ネットワークの構造}
+ネットワークの構造は, 手法1と同様である. 
+
+\paragraph{訓練}
+バッチサイズ8, データ量7242, ミニバッチ学習で4000step, 8000step, 10000step学習した.
+
+\subsection{実験2-1}
+実験目的, 実験装置, 実験方法は実験1と同様である. 
+
+\paragraph{実験結果}
+実験結果は, \ref{tb:exp2}のようになった. \figref{Fig:result2}の青×の箇所でコースアウトして, 目標経路に復帰できなかった. 
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|} \hline
+    step & Number of successes \\ \hline
+    4000 & 0/10 \\ \hline
+    8000 & 0/10 \\ \hline
+    10000 & 0/10 \\ \hline
+  \end{tabular}
+  \caption{Number of successes in the experiment2-1}
+  \label{tb:exp2}
+\end{table}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.6]{images/result2.png}
+  \caption{Failure point of the experiment2-1}
+  \label{Fig:result2}
+  \end{figure}
+
+\paragraph{考察}
+収集した角速度を\figref{Fig:exp2}のようにヒストグラムにした. 経路上及び経路周辺のデータが\figref{Fig:exp1}と比べて多くなっている. これにより, \figref{Fig:result2}の青枠の区間において, 壁に衝突することなく走行できていることが分かる. しかし, データ量や学習量を変化させても成功回数は増えなかった. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.6]{images/exp2.png}
+  \caption{Histogram of collected angular velocities in the experiment2-1}
+  \label{Fig:exp2}
+  \end{figure}
+
 \newpage
-\section{訓練時}
+\subsection{訓練2-2}
+\paragraph{ネットワークの構造}
+ネットワークの構造は, 手法1, 手法2と同様である. 
+
+\paragraph{訓練}
+バッチサイズはデータ量と同じ7242, バッチ学習で4000step, 8000step, 10000step学習した. 
+
+\subsection{実験2-2}
+実験目的, 実験装置, 実験方法は実験1, 実験2-1と同様である. 
+
+\paragraph{実験結果}
+実験結果は, のようになった.
+
+\begin{table}[h]
+  \centering
+  \begin{tabular}{|c|c|} \hline
+    step & Number of successes \\ \hline
+    4000 & /10 \\ \hline
+    8000 & /10 \\ \hline
+    10000 & /10 \\ \hline
+  \end{tabular}
+  \caption{Number of successes in the experiment2-2}
+  \label{tb:exp3}
+\end{table}
