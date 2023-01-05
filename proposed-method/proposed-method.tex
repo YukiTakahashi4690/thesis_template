@@ -1,11 +1,11 @@
 %!TEX root = ../thesis.tex
 
-本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練, 実験の3節に分けて紹介する.
+本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練, 実験の3節に分けて紹介する. 以下, 実験時の並進速度は0.2[m/s]とする. 
 
 \section{手法1}
 
 \subsection{データの収集方法}
-\figref{Fig:old-method}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.10, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて, 64×48のカメラ画像(RGB画像)とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. これをGazeboのWillow Garageで\figref{Fig:willow-garage}に示すコースで一周行う.
+\figref{Fig:old-method}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.10, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて, 64×48のカメラ画像(RGB画像)とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. これをGazebo\cite{gazebo}のWillow Garage\cite{willow}で\figref{Fig:willow-garage}に示すコースで一周行う.
 
 % \vspace{10mm}
 
@@ -54,7 +54,7 @@
 シミュレータ上で実験を行い, 提案手法の有効性を検証する.
 
 \paragraph{実験装置}
-シミュレータを用いた実験では, データの収集方法と同様にWillow Garageを使用した. また, ロボットモデルには\figref{Fig:turtlebot3}に示すようなカメラを3つ搭載したTurtlebot3を用いた. 
+シミュレータを用いた実験では, データの収集方法と同様にWillow Garageを使用した. また, ロボットモデルには\figref{Fig:turtlebot3}に示すようなカメラを3つ搭載したTurtlebot3\cite{turtlebot3}を用いた. 
 
 \begin{figure}[h]
   \centering
@@ -187,14 +187,22 @@
   \end{figure}
 
 \paragraph{考察}
-4000stepでは成功回数が0/10だったが, 8000step, 10000stepにすることで成功回数が1/10になり, 目標経路を一周することができた. このことから, 訓練する際に異常データから受ける影響が少なくて済むバッチ学習を用いて, 学習量を増やすことで成功回数が増えることを示せた. また, \figref{Fig:result3}の緑枠内の角で曲がりきれず, 青×に示す箇所でコースアウトしたが, 訓練2-1と比べて角で曲がる挙動が見られた. よって, 訓練2-2では成功回数が十分であるとは言えず, 角を曲がり切れていない. そこで, \figref{Fig:result3}の緑枠内のデータを水増しすることで角を曲がり切ることができ, 成功回数が増えるのではないかと考えた. 
+4000stepでは成功回数が0/10だったが, 8000step, 10000stepにすることで成功回数が1/10になり, 目標経路を一周することができた. このことから, 訓練する際に異常データから受ける影響が少なくて済むバッチ学習を用いて, 学習量を増やすことで成功回数が増えることを示せた. 失敗箇所は\figref{Fig:result3}の緑枠内の角で4000step, 8000step, 10000step全てで曲がりきれず, 青×に示す箇所でコースアウトした. しかし, 訓練2-1と比べて角で曲がる挙動が見られた. 以上から, 成功回数は増えたが, 訓練2-2では成功回数が十分であるとは言えず, ほとんどで角を曲がり切れていない. そこで, \figref{Fig:result3}の緑枠内のデータを水増しすることで角を曲がり切ることができ, 成功回数が増えるのではないかと考えた. 
 
 \subsection{訓練2-3}
-ここでは, 角のデータを水増しすることで成功回数が増えるかどうか検証する. 
+ここでは, 角のデータを水増しすることで成功回数が増えるかどうか検証する. 訓練2-2で用いた角速度のデータを\figref{Fig:exp3}に示す. 直進に近いデータ(-0.2rad/sから0.2rad/s)の合計は4227, 角を左折する際の角速度のデータ(0.3rad/s以上)の合計は1280である. 直進は失敗していないことから, 左折する際のデータも直進と同量であれば曲がれるのではないかと考えた. よって, 左折する際のデータ量を4倍して実験を行う. 
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.6]{images/exp3.png}
+  \caption{Histogram of collected angular velocities in the experiment2-2}
+  \label{Fig:exp3}
+  \end{figure}
 
 \paragraph{訓練}
-バッチサイズはデータ量と同じ8154, バッチ学習で4000step, 8000stp, 10000step学習した. 
+バッチサイズはデータ量と同じ8490, バッチ学習で4000step, 8000stp, 10000step学習した. 
 
+\newpage
 \subsection{実験2-3}
 
 \paragraph{実験結果}
@@ -204,10 +212,12 @@
   \centering
   \begin{tabular}{|c|c|} \hline
     step & Number of successes \\ \hline
-    4000 & 0/10 \\ \hline
-    8000 & 1/10 \\ \hline
+    4000 & /10 \\ \hline
+    8000 & /10 \\ \hline
     10000 & /10 \\ \hline
   \end{tabular}
   \caption{Number of successes in the experiment2-3}
   \label{tb:exp4}
 \end{table}
+
+訓練2-3, 実験2-3の結果, 考察は実験が終わり次第記入

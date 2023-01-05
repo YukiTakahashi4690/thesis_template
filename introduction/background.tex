@@ -14,7 +14,7 @@
 \end{figure}
 
 \newpage
-岡田らにより\figref{Fig:tsudanuma2-3}のように地図ベースのナビゲーションによる出力を模倣することで, 経路追従行動を獲得した\cite{okada-si}. \figref{Fig:okada-method}に示すような, LiDAR, オドメトリを入力としたナビゲーションの出力をend-to-endで模倣学習し, 学習後はカメラ画像を入力とした学習器の出力により, 一定の経路において周回が可能であることが確認された. 
+岡田らは\figref{Fig:tsudanuma2-3}のように地図ベースのナビゲーションによる出力を模倣することで, 経路追従行動を獲得した\cite{okada-si}. \figref{Fig:okada-method}に示すような, LiDAR, オドメトリを入力としたナビゲーションの出力をend-to-endで模倣学習し, 学習後はカメラ画像を入力とした学習器の出力により, 一定の経路において周回が可能であることが確認された. 
 
 \vspace{20mm}
 
@@ -22,7 +22,7 @@
      \centering
      \includegraphics[keepaspectratio, scale=0.15]
      {images/tsudanuma2-3.png}
-     \caption{Driving with output from map-based navigation indoors from \cite{okada-si}}
+     \caption{Map based navigation using navigation indoors from \cite{okada-si}}
      \label{Fig:tsudanuma2-3}
      \end{figure}
 
@@ -30,12 +30,12 @@
      \centering
      \includegraphics[keepaspectratio, scale=0.45]
      {images/okada-method.png}
-     \caption{Okada and others proposed method from \cite{okada-si}}
+     \caption{Systems that imitation learning for map-based navigation from \cite{okada-si}}
      \label{Fig:okada-method}
      \end{figure}
 
 \newpage
-また, 清岡ら\cite{kiyooka-si}(以下｢先行研究｣と称する)により, \figref{Fig:kiyooka-si}に示すような手法を用いて, 経路上だけでなく経路から離れた状態も学習することが, 経路追従行動を模倣する上で有効であることが示された. 
+また, 清岡ら\cite{kiyooka-si}により, \figref{Fig:kiyooka-si}に示すような手法を用いて, 経路上だけでなく経路から離れた状態も学習することが, 経路追従行動を模倣する上で有効であることが示された. 
 
 \vspace{10mm}
 
@@ -47,7 +47,7 @@
      \end{figure}
 
 \vspace{20mm}
-以上で述べたように, カメラ画像を入力とした学習器の出力により, ロボットが学習した経路を周回可能であることが示されている. しかし, 先行研究ではロボットを走行させながらオンラインで学習を行っているため, 目標経路周辺のデータを網羅することができない. \par これを踏まえて, 先行研究を基に, 新たなデータセットの収集方法を考案する.
+以上で述べたように, カメラ画像を入力とした学習器の出力により, ロボットが学習した経路を周回可能であることが示されている. \par 次に, 岡田らと清岡ら(以下｢先行研究｣と称する)の提案手法を基に, 新たなデータセットの収集方法を提案する.
 
 \newpage
 \section{関連研究}
@@ -80,5 +80,5 @@ Yunpeng Pan\cite{batch}らは, \figref{Fig:batch1}に示すシステムと\figre
 本研究では, 先行研究を基に, 新たなデータセットの収集方法を提案する. 提案手法の有効性をシミュレータを用いた実験により検証することを目的とする. 
 
 \section{論文構成}
-本論文の構成は以下に述べる通りである. 第1章では研究を行う背景や目的を述べた. 第2章では研究に関連する要素技術, 第3章では提案手法について説明する. 
+本論文の構成は以下に述べる通りである. 第1章では, 研究を行う背景や目的を述べた. 第2章では, 研究に関連する要素技術, 第3章では, 提案手法について説明する. そして, 第4章では, 本研究の結論を述べる. 
      
