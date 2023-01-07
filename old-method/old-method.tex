@@ -39,5 +39,16 @@
   \label{Fig:okada-method}
   \end{figure}
 
+\newpage
+\section{ネットワークの構造}
+\figref{Fig:cnn}に従来研究で用いたネットワークの構造を示す. 構造は, 入力層1, 畳み込み層3, 全結合層2, 出力層1の計7層から構成されている.
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.6]{images/cnn.png}
+  \caption{Structure of network}
+  \label{Fig:cnn}
+  \end{figure}
+
 以上にようにして, 従来研究ではオンラインでデータを収集し学習を行っていた. しかし, 学習器の出力で自律走行をするためには, 何周もロボットを走行させて学習する必要がある. これでは, 走行中にコースアウトしないか監視する必要や, 時間がかかるといった問題点がある. \par これらを踏まえて, 本研究では, オフラインでデータセットを収集して訓練する手法を試みる. 
 
