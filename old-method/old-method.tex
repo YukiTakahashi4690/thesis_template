@@ -22,10 +22,22 @@
 \begin{figure}[h]
   \centering
   \includegraphics[keepaspectratio, scale=0.4]{images/old-method3.png}
-  \caption{The conventional method collects the navigation actions apart from the robot's actions}
+  \caption{The conventional method collects the navigation actions apart from the robot's actions from \cite{okada-si2020}}
   \label{Fig:old-method3}
   \end{figure}
 
 \newpage
 \section{従来手法のシステム概要}
+次に, 3.1章を基に構築された従来手法のシステムを\figref{Fig:okada-method}に示す. システムでは, LiDAR, オドメトリを入力としたナビゲーションの出力である角速度を学習器とモータ駆動系に与える. ナビゲーションの角速度は, ROSのパッケージであるnavigation\cite{navigation}により計算される. また, 学習器には, カメラ画像を64×48にリサイズした画像を入力し, ナビゲーションの角速度を出力して, 0.2sの周期でend-to-end学習する. 
+
+\vspace{10mm}
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.45]
+  {images/okada-method.png}
+  \caption{Systems that imitation learning for map-based navigation from \cite{okada-si2021}}
+  \label{Fig:okada-method}
+  \end{figure}
+
+以上にようにして, 従来研究ではオンラインでデータを収集し学習を行っていた. しかし, 学習器の出力で自律走行をするためには, 何周もロボットを走行させて学習する必要がある. これでは, 走行中にコースアウトしないか監視する必要や, 時間がかかるといった問題点がある. \par これらを踏まえて, 本研究では, オフラインでデータセットを収集して訓練する手法を試みる. 
 

@@ -1,11 +1,12 @@
 %!TEX root = ../thesis.tex
 
-本章では, 先行研究を基にした提案手法をデータの収集方法, 訓練, 実験の3節に分けて紹介する.
+本章では, 先行研究を基にしたオフラインでデータを収集し訓練する手法を提案する.
 
-\section{手法1}
+\section{手法}
 
 \subsection{データの収集方法}
-\figref{Fig:old-method}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.10, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて, 64×48のカメラ画像(RGB画像)とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. これをGazebo\cite{gazebo}のWillow Garage\cite{willow}で\figref{Fig:willow-garage}に示すコースで一周行う.
+\figref{Fig:old-method}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.10, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて, 64×48のカメラ画像(RGB画像)とルールベース制御器によるナビゲーションの出力である角速度を\figref{Fig:collect-data2}のように収集する. このように, ロボットを走行させることなく目標経路上及び周辺に配置することで, 一度に大量のデータを収集することができる.
+% これをGazebo\cite{gazebo}のWillow Garage\cite{willow}で\figref{Fig:willow-garage}に示すコースで一周行う.
 
 % \vspace{10mm}
 
