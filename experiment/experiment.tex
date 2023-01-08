@@ -239,7 +239,29 @@
 \end{table}
 
 \paragraph{考察}
-4000stepでは成功回数が0/10だったが, 8000step, 10000stepにすることで成功回数が1/10になり, 目標経路を一周することができた. このことから, 訓練する際に異常データから受ける影響が少なくて済むバッチ学習を用いて, 学習量を増やすことで成功回数が増えることを示せた. 失敗箇所は\figref{Fig:result3}の緑枠内の角で4000step, 8000step, 10000step全てで曲がりきれず, 青×に示す箇所でコースアウトした. しかし, 実験条件2と比べて角で曲がる挙動が見られた. 以上から, 成功回数は増えたが, 実験条件3では成功回数が十分であるとは言えず, ほとんどで角を曲がり切れていない. そこで, \figref{Fig:result3}の緑枠内のデータを増やすことで角を曲がり切ることができ, 成功回数が増えるのではないかと考えた. 
+4000stepでは成功回数が0/10だったが, 8000step, 10000stepにすることで成功回数が1/10になり, 目標経路を一周することができた. このことから, 訓練する際に異常データから受ける影響が少なくて済むバッチ学習を用いて, ステップ数を増やすことで成功回数が増えることを示せた. また, lossは\figref{Fig:exp3-4000}, \figref{Fig:exp3-8000}, \figref{Fig:exp3-10000}のようになった. 失敗箇所は\figref{Fig:result3}の緑枠内の角で4000step, 8000step, 10000step全てで曲がりきれず, 青×に示す箇所でコースアウトした. しかし, 実験条件2と比べて角で曲がる挙動が見られた. 以上から, 成功回数は増えたが, 実験条件3では成功回数が十分であるとは言えず, ほとんどで角を曲がり切れていない. そこで, \figref{Fig:result3}の緑枠内のデータを増やすことで角を曲がり切ることができ, 成功回数が増えるのではないかと考えた. 
+
+\newpage
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.31]{images/exp3-4000.png}
+  \caption{Loss value in the experiment1}
+  \label{Fig:exp3-4000}
+  \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.31]{images/exp3-8000.png}
+  \caption{Loss value in the experiment2}
+  \label{Fig:exp3-8000}
+  \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.31]{images/exp3-10000.png}
+  \caption{Loss value in the experiment3}
+  \label{Fig:exp3-10000}
+  \end{figure}
 
 \newpage
 ※次の添削までに, 角において並進方法の配置密度を狭めてデータ量を増やすことで成功回数が増えるか検証します.
