@@ -10,7 +10,7 @@
 \vspace{1.0zh}
 %
 
-近年, 自律移動ロボットの研究が盛んに行われている. 本研究室においても, 2D-LiDARを用いた自律移動システムの出力を教師信号としてロボットに与えて学習させることで, 経路追従行動をオンラインで模倣する手法を提案し, 実験によりその有効性を確認してきた. 本研究では, 従来手法を基に, 目標とする経路上及び周辺のデータを一度に収集し, オフラインで訓練する手法を提案する. 提案手法では, 経路上にロボットを配置し, カメラ画像と教師データとなる目標角速度を収集する. それらのデータを基にオフラインで学習を行い, 学習後はカメラ画像を入力とした学習出力により自律移動させることで, 手法の有効性を検証する. 結果として, 成功回数は少ないが提案手法により, 経路を追従できることを確認した. 
+近年, 自律移動ロボットの研究が盛んに行われている. 本研究室においても, 2D-LiDARを用いた自律移動システムの出力を教師信号としてロボットに与えて学習させることで, 経路追従行動をオンラインで模倣する手法を提案し, 実験によりその有効性を確認してきた. 本研究では, 従来手法を基に, 目標とする経路上及び周辺のデータを一度に収集し, オフラインで訓練する手法を提案する. 提案手法では, 経路上にロボットを配置し, カメラ画像と教師データとなる目標角速度を収集する. それらのデータを基にオフラインで学習を行い, 学習後はカメラ画像を入力とした学習器の出力により自律移動させることで, 手法の有効性を検証する. 結果として, 提案手法により経路を周回できることを確認した. 
 
 \vspace{10mm}
 キーワード: end-to-end学習, ナビゲーション, オフライン
@@ -28,7 +28,7 @@
 \vspace{1.0zh}
 %
 
-Recently, autonomous mobile robots have been studied extensively. In our laboratory, we have proposed an online imitation method of a robot's path-following behavior by training the robot with the output of a 2D-LiDAR-based autonomous mobile system as a teacher signal, and have confirmed the effectiveness of the proposed method through experiments. In this study, we propose an off-line training method based on the conventional method by collecting data on and around the target path at a time. In the proposed method, the robot is placed on the path, and camera images and target angular velocity are collected as teacher data. The effectiveness of the proposed method is verified by training the robot off-line based on these data, and after training, the robot is made to move autonomously using the training output with camera images as input. As a result, it is confirmed that the proposed method can follow a route, although the number of successes is small.
+Recently, autonomous mobile robots have been studied extensively. In our laboratory, we have proposed an online imitation method of path-following behavior by training a robot with the output of a 2D-LiDAR-based autonomous mobile system as a teacher signal, and have confirmed the effectiveness of the proposed method through experiments. In this study, we propose an off-line training method based on the conventional method by collecting data on and around the target path at a time. In the proposed method, the robot is placed on the path, and camera images and target angular velocity are collected as teacher data. The effectiveness of the proposed method is verified by training the robot off-line based on these data, and after training, the robot moves autonomously by using the output of the trainer with camera images as input. As a result, it is confirmed that the proposed method is able to go around the path.
 
 \vspace{10mm}
 keywords: End-to-End Learning, Navigation, Offline 
