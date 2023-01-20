@@ -1,8 +1,87 @@
 %!TEX root = ../thesis.tex
 \chapter*{付録}
 \addcontentsline{toc}{chapter}{付録}
-シミュレータ上でデータ収集を行った際の様子及び, 実験2で経路を周回する様子を動画に記録した. 下記にそれぞれのURLを掲載する.
+\section*{動画}
+実験2で経路を周回する様子を動画に記録した. 下記にURLを掲載する.
 \begin{itemize}
-  \item データ収集の様子
-  \item 実験2で経路を周回する様子
+  \item 実験2で経路を周回する様子 \\ 4000step \\ \url{https://youtu.be/bVp--mFVrZ0}
 \end{itemize}
+
+\newpage
+\section*{走行の軌跡}
+実験1と実験3のテストフェーズの失敗例を下記に示す.
+\subsection*{実験1(バッチ学習)}
+
+\begin{figure}[h]
+  \begin{tabular}{cc}
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_4000_2.png}
+    \end{minipage} &
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_4000_8.png}
+    \end{minipage} \\
+  \end{tabular}
+   \caption*{4000step}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{tabular}{cc}
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_8000_1.png}
+    \end{minipage} &
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_8000_3.png}
+    \end{minipage} \\
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_8000_4.png}
+    \end{minipage} &
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_8000_8.png}
+    \end{minipage} \\
+  \end{tabular}
+   \caption*{8000step}
+\end{figure}
+
+\newpage
+\begin{figure}[h]
+  \begin{tabular}{cc}
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_10000_5.png}
+    \end{minipage} &
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_10000_7.png}
+    \end{minipage} \\
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_10000_8.png}
+    \end{minipage} &
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp1.2_10000_9.png}
+    \end{minipage} \\
+  \end{tabular}
+   \caption*{10000step}
+\end{figure}
+
+\subsection*{実験3}
+\begin{figure}[h]
+  \begin{tabular}{cc}
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp3_1000_4.png}
+    \end{minipage} &
+    \begin{minipage}[h]{0.45\hsize}
+      \centering
+      \includegraphics[keepaspectratio, scale=0.3]{images/exp3_1000_10.png}
+    \end{minipage} \\
+  \end{tabular}
+   \caption*{1000step}
+\end{figure}
