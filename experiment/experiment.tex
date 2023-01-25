@@ -14,6 +14,8 @@
   \label{Fig:gazebo}
   \end{figure}
 
+\newpage
+\vspace{20mm}
 \begin{figure}[h]
   \centering
   \includegraphics[keepaspectratio, scale=0.5]{images/willow-path.png}
@@ -41,7 +43,6 @@
   \label{Fig:old-method}
   \end{figure}
 
-\newpage
 \begin{description}
   \item[2.訓練フェーズ]\mbox{}\\データ収集フェーズで収集したデータ2748個を用いて, バッチ学習で4000step, 8000step, 10000step学習した. なお, 4000stepは従来手法において, シミュレータの実験に用いられてきたステップ数であり, 10000stepは従来手法において, 実ロボットの実験に用いられていたステップ数である. 
 \end{description}
@@ -52,6 +53,7 @@
 
 \subsection{実験結果}
 実験結果を表\ref{tb:exp1.2}に示す. また, 失敗箇所は\figref{Fig:result1.2}, 失敗箇所ごとの失敗回数は表\ref{tb:fail1.2}のようになった. 
+\par \figref{Fig:result1.2}の×の箇所で曲がり切ることができずにコースアウトしてしまった. ここで, 訓練させた際のlossを以下に示す. \figref{Fig:exp1.2_4000}, \figref{Fig:exp1.2_8000}, \figref{Fig:exp1.2_10000}では. 学習が収束している様子が確認できる. 角を曲がりきれなかった要因の一つとして, コースアウトした箇所付近の目標経路周辺のデータが足りないためだと考えられる. また, ステップ数を増やして成功回数が減ったのは, 直進のデータを多く学習しすぎて過学習を起こしている可能性もある. これを踏まえて, 次に目標経路と平行な方向のロボットの配置間隔を狭めて, データ数を増やすことで成功回数が増えるか検証する. 
 
 % \newpage
 % \begin{description}
@@ -89,11 +91,12 @@
 %   \label{tb:fail1.1}
 % \end{table}
 
-\newpage
-\begin{description}
-  \item [(2)バッチ学習]
-\end{description}
+% \newpage
+% \begin{description}
+%   \item [(2)バッチ学習]
+% \end{description}
 
+\newpage
 \begin{table}[h]
   \centering
   \begin{tabular}{|c|c|} \hline
@@ -125,9 +128,9 @@
   \label{tb:fail1.2}
 \end{table}
 
-\newpage
-\subsection{考察}
-成功回数は増えたが, \figref{Fig:result1.2}の×の箇所で曲がり切ることができずにコースアウトしてしまった. ここで, 訓練させた際のlossを以下に示す. \figref{Fig:exp1.2_4000}, \figref{Fig:exp1.2_8000}, \figref{Fig:exp1.2_10000}では. 学習が収束している様子が確認できる. 角を曲がりきれなかった要因の一つとして, コースアウトした箇所付近の目標経路周辺のデータが足りないためだと考えられる. また, ステップ数を増やして成功回数が減ったのは, 直進のデータを多く学習しすぎて過学習を起こしている可能性もある. これを踏まえて, 次に目標経路と平行な方向のロボットの配置間隔を狭めて, データ数を増やすことで成功回数が増えるか検証する. 
+% \newpage
+% \subsection{考察}
+
 % 従来の学習方法では直進時, 経路から離れた際に経路に戻る挙動や, 壁に近づいた際に避ける挙動が見られなかった. これは, 訓練時に全てのデータを使用せずに, 直進のデータをいくつか捨ててしまっているためだと考えられる. また, バッチ学習では, 訓練時に全てのデータを使用しているため, 壁に衝突することなく直進できたと考えられる. しかし, \figref{Fig:result1.2}の青×の箇所で角を曲がり切ることができずにコースアウトしてしまった. ここで, 訓練させた際のlossを以下に示す. 従来の学習方法の\figref{Fig:exp1.1_4000}, \figref{Fig:exp1.1_8000}, \figref{Fig:exp1.1_10000}は正しく学習できず, オーバシュートしている. バッチ学習の\figref{Fig:exp1.2_4000}, \figref{Fig:exp1.2_8000}, \figref{Fig:exp1.2_10000}では. ステップ数を増やすに連れて学習が収束していることが分かる. 角を曲がりきれなかった要因の一つとして, コースアウトした箇所付近の目標経路周辺のデータが足りないためだと考えられる. そこで, 次に目標経路と平行な方向のロボット配置間隔を狭めて, データ数を増やすことで成功回数が増えるか検証する. 
 
 % \newpage
@@ -155,21 +158,22 @@
 \newpage
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.31]{images/exp1.2_4000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp1.2_4000.png}
   \caption{Loss value in the experiment1}
   \label{Fig:exp1.2_4000}
   \end{figure}
   
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.31]{images/exp1.2_8000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp1.2_8000.png}
   \caption{Loss value in the experiment2}
   \label{Fig:exp1.2_8000}
   \end{figure}
 
+  \newpage
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.31]{images/exp1.2_10000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp1.2_10000.png}
   \caption{Loss value in the experiment3}
   \label{Fig:exp1.2_10000}
   \end{figure}
@@ -193,8 +197,10 @@
   \item[2.訓練フェーズ]\mbox{}\\データ収集フェーズで収集したデータ7452個を用いて, バッチ学習で4000step, 8000step, 10000step学習した. 
 \end{description}
 
+\newpage
 \subsection{実験結果}
 実験結果を表\ref{tb:exp2.2}に示す. 
+\par 実験1と実験2で収集した角速度のデータ数の比率を\figref{Fig:hist}に示す. 実験2では, 収集したデータ数全体の数も増えているが, 角を曲がる際の角速度0.3rad/s以上のデータも増えていることが分かる. また, 4000step, 8000step, 10000step全てで成功回数が10/10となり, 経路を周回することができた. ここで, 学習のlossを\figref{Fig:exp2.2-4000}, \figref{Fig:exp2.2-8000}, \figref{Fig:exp2.2-10000}に示す.\figref{Fig:exp2.2-4000}, \figref{Fig:exp2.2-8000}, \figref{Fig:exp2.2-10000}はステップ数を増やすに連れて, 学習が収束している様子を確認できる. 従って, 目標経路周辺においてロボットの配置間隔を狭め, バッチ学習を用いて訓練することで経路追従できることを確認した. 
 % また, 失敗箇所は\figref{Fig:result2.1}, 失敗箇所ごとの失敗回数は表\ref{tb:fail2.1}であった. 
 
 % \newpage
@@ -232,10 +238,12 @@
 %   \label{tb:fail2.1}
 % \end{table}
 
-\newpage
-\begin{description}
-  \item [(2)バッチ学習]
-\end{description}
+% \newpage
+% \begin{description}
+%   \item [(2)バッチ学習]
+% \end{description}
+
+\vspace{10mm}
 \begin{table}[h]
   \centering
   \begin{tabular}{|c|c|} \hline
@@ -248,15 +256,15 @@
   \label{tb:exp2.2}
 \end{table}
 
-\subsection{考察}
-実験1と実験2で収集した角速度のデータ数の比率を\figref{Fig:hist}に示す. 実験2では, 収集したデータ数全体の数も増えているが, 角を曲がる際の角速度0.3rad/s以上のデータも増えていることが分かる. また, 4000step, 8000step, 10000step全てで成功回数が10/10となり, 経路を周回することができた. ここで, 学習のlossを\figref{Fig:exp2.2-4000}, \figref{Fig:exp2.2-8000}, \figref{Fig:exp2.2-10000}に示す.\figref{Fig:exp2.2-4000}, \figref{Fig:exp2.2-8000}, \figref{Fig:exp2.2-10000}はステップ数を増やすに連れて, 学習が収束している様子を確認できる. 従って, 目標経路周辺においてロボットの配置間隔を狭め, バッチ学習を用いて訓練することで経路追従できることを確認した. 
+% \subsection{考察}
+
 % また, 従来の学習方法では, 4000step, 8000step, 10000step全てで\figref{Fig:result2.1}の青×に示す箇所で壁に衝突して失敗した. 実験1の\figref{Fig:result1.1}と比べて走行距離が短くなっているのは, 全体のデータ数及び角のデータ数の割合は増えたが, 訓練時に全てのデータを使用していないため, 左折する行動を多く学習してしまったためだと考えられる.
 % 収集した角速度を\figref{Fig:exp2}のようにヒストグラムにした. 経路上及び経路周辺のデータである0.0rad/sから0.1rad/sが全体の68.3\%になり, \figref{Fig:exp1}と比べて多くなっている. また, 4000step, 8000step, 10000step全て\figref{Fig:result2}に青×の箇所で壁に衝突し失敗した. 結果として, 経路上や経路周辺のデータを増やしたり, ステップ数を増やしたりしても成功回数は増えなかった. ここで, 訓練させた際の各実験ごとのlossを\figref{Fig:exp2-4000}, \figref{Fig:exp2-8000}, \figref{Fig:exp2-10000}に示す. 実験1と同様に4000stepから10000step全てにおいて, オーバーシュートしていると考えられる. 先行研究では, オンラインで学習を行うため, 計算のリソースなどの観点からバッチサイズを8にしていた. しかし, 提案手法ではオフラインで学習を行うため, バッチ学習に変更する. これにより, 一度に大量のデータを扱えるため最適解に辿り着くことができ, 成功回数が増えるのではないかと考えた. 
 
 \newpage
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.5]{images/ang_sum.png}
+  \includegraphics[keepaspectratio, scale=0.6]{images/ang_sum.png}
   \caption{Histogram of collected angular velocities in the experiment1 and the experiment2}
   \label{Fig:hist}
   \end{figure}
@@ -286,25 +294,27 @@
 \newpage
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.31]{images/exp3_4000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp3_4000.png}
   \caption{Loss value in the experiment1}
   \label{Fig:exp2.2-4000}
   \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.31]{images/exp3_8000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp3_8000.png}
   \caption{Loss value in the experiment2}
   \label{Fig:exp2.2-8000}
   \end{figure}
 
+\newpage
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.31]{images/exp3_10000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp3_10000.png}
   \caption{Loss value in the experiment3}
   \label{Fig:exp2.2-10000}
   \end{figure}
 
+\newpage
 \section{実験3}
 ここでは, 実験2で成功率が100\%であった4000stepから1000stepずつステップ数を減らした場合に, 成功率及び訓練時間がどのように変わるか検証する. 実験目的, 実験装置, データ収集フェーズ, テストフェーズは実験2と同様である. 
 
@@ -314,8 +324,9 @@
 \end{description}
 
 \subsection{実験結果}
-実験結果を表\ref{tb:exp3}を示す. 失敗箇所は\figref{Fig:result3}, 失敗箇所ごとの失敗回数を表\ref{tb:fail3}に示す. 3000stepでは成功率90\%, 4分40秒で訓練が終了した. 2000stepでは成功率80\%, 3分10秒で訓練が終了し, 4000stepの半分の時間で訓練を終了することができた. また, 1000stepでは成功率は50\%であったが, 4000stepで訓練に要する時間の40\%で訓練を終えることができた. ここで, 各ステップ数ごとのlossを\figref{Fig:loss3}に示す. 結果として, 従来手法が訓練に最低40分程度必要であったのに対して, 大幅に時間を短縮できることを確認した. 
+実験結果を表\ref{tb:exp3}を示す. 失敗箇所は\figref{Fig:result3}, 失敗箇所ごとの失敗回数を表\ref{tb:fail3}に示す. 3000stepでは成功率90\%, 4分40秒で訓練が終了した. 2000stepでは成功率80\%, 3分10秒で訓練が終了し, 4000stepの半分の時間で訓練を終了することができた. また, 1000stepでは成功率は50\%であったが, 4000step訓練するのに必要としていた時間を約25\%で削減することができた. ここで, 各ステップ数ごとのlossを\figref{Fig:loss3}に示す. 結果として, 従来手法が訓練に最低40分程度必要であったのに対して, 大幅に時間を短縮できることを確認した. 
 
+\vspace{10mm}
 \begin{table}[h]
   \centering
   \begin{tabular}{|c|c|c|} \hline
