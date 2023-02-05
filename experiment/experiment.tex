@@ -33,7 +33,7 @@
 \newpage
 \subsection{実験方法}
 \begin{description}
-  \item[1.データ収集フェーズ]\mbox{}\\データの収集方法について述べる. \figref{Fig:old-method}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.10, ±0.20, ±0.30m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて, カメラ画像とナビゲーションの出力である角速度を収集する. これを\figref{Fig:willow-garage}に示した経路で実験を行う. 
+  \item[1.データ収集フェーズ]\mbox{}\\データの収集方法について述べる. \figref{Fig:old-method}にデータの収集方法を示す. 赤色の線である目標経路から平行に±0.10, ±0.20, ±0.30m, また, ロボットの進行方向に対しては0.5m離れた座標にロボットを配置する. そして, その座標ごとに目標経路に沿った向きを基準として±5度傾けて, カメラ画像とナビゲーションの出力である角速度を収集する. これを\figref{Fig:willow-garage}に示した経路で実験を行う. 
 \end{description}
 
 \begin{figure}[h]
@@ -156,7 +156,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.5]{images/exp3_4000.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/exp3_4000_fix.png}
   \caption{Loss value in the experiment1}
   \label{Fig:exp2.2-4000}
   \end{figure}
@@ -186,7 +186,7 @@
 \end{description}
 
 \subsection{実験結果}
-実験結果を表\ref{tb:exp3}を示す. 失敗箇所は\figref{Fig:result3}, 失敗箇所ごとの失敗回数を表\ref{tb:fail3}に示す. 3000stepでは成功率90\%, 4分40秒で訓練が終了した. 2000stepでは成功率80\%, 3分10秒で訓練が終了し, 4000stepの半分の時間で訓練を終了することができた. また, 1000stepでは成功率は50\%であったが, 4000step訓練するのに必要としていた時間を約25\%で削減することができた. ここで, 各ステップ数ごとのlossを\figref{Fig:loss3}に示す. 結果として, 従来手法が訓練に最低約13分程度必要であったのに対して, 大幅に時間を短縮できることを確認した. 
+実験結果を表\ref{tb:exp3}を示す. 失敗箇所は\figref{Fig:result3}, 失敗箇所ごとの失敗回数を表\ref{tb:fail3}に示す. 3000stepでは成功率90\%, 4分40秒で訓練が終了した. 2000stepでは成功率80\%, 3分10秒で訓練が終了し, 4000stepの半分の時間で訓練を終了することができた. また, 1000stepでは成功率は50\%であったが, 4000step訓練するのに必要としていた時間を約25\%で削減することができた. ここで, 各ステップ数ごとのlossを\figref{Fig:3000}, \figref{Fig:2000}, \figref{Fig:1000}に示す. 結果として, 従来手法が訓練に最低約40分程度必要であったのに対して, 大幅に時間を短縮できることを確認した. 
 
 \vspace{10mm}
 \begin{table}[h]
@@ -223,7 +223,21 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.5]{images/loss3.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/3000.png}
   \caption{Loss value in the experiments}
-  \label{Fig:loss3}
+  \label{Fig:3000}
+  \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.5]{images/2000.png}
+  \caption{Loss value in the experiments}
+  \label{Fig:2000}
+  \end{figure}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.5]{images/1000.png}
+  \caption{Loss value in the experiments}
+  \label{Fig:1000}
   \end{figure}
