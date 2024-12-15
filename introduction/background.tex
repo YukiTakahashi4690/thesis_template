@@ -1,92 +1,54 @@
 %!TEX root = ../thesis.tex
 
 \section{背景}
-近年, 様々なセンサを用いた自律移動に関する研究が活発に行われており, その中で視覚を入力としたend-to-end学習により自律走行した例もある. 例えば, Bojarskiらは\figref{Fig:bojaski}に示すシステムでカメラ画像と人が操作するステアリングの角度をend-to-end学習することで, 自律走行する手法を提案した\cite{bojaski}.
-
-\vspace{20mm}
-
-\begin{figure}[hbtp]
-\centering
-\includegraphics[keepaspectratio, scale=0.5]
-{images/bojaski.png}
-\caption{Training the neural network from \cite{bojaski}}
-\label{Fig:bojaski}
-\end{figure}
-
-\newpage
-岡田らは\figref{Fig:tsudanuma2-3}のように地図ベースのナビゲーションによる出力を模倣することで, 経路追従行動を獲得した\cite{okada-si2020}. \figref{Fig:okada-si2020}に示すような, LiDAR, オドメトリを入力としたナビゲーションの出力をend-to-endで模倣学習し, 学習後はカメラ画像を入力とした学習器の出力により, 一定の経路において周回が可能であることが確認された. 
-
-\vspace{20mm}
-
-\begin{figure}[h]
-     \centering
-     \includegraphics[keepaspectratio, scale=0.15]
-     {images/tsudanuma2-3.png}
-     \caption{Map based navigation using navigation indoors from \cite{okada-si2020}}
-     \label{Fig:tsudanuma2-3}
-     \end{figure}
-
-\begin{figure}[h]
-     \centering
-     \includegraphics[keepaspectratio, scale=0.42]
-     {images/okada-si2020.png}
-     \caption{Systems that imitation learning for map-based navigation from \cite{okada-si2020}}
-     \label{Fig:okada-si2020}
-     \end{figure}
-
-\newpage
-また, 清岡ら\cite{kiyooka-si}により, \figref{Fig:kiyooka-si}に示すような手法を用いて, 経路上だけでなく経路から離れた状態も学習することが, 経路追従行動を模倣する上で有効であることが示された. 
-
-\vspace{10mm}
-
-\begin{figure}[h]
-     \centering
-     \includegraphics[keepaspectratio, scale=0.45]{images/kiyooka-si-1.png}
-     \caption{Procedure for visualizing the output of the learning machine from \cite{kiyooka-si}}
-     \label{Fig:kiyooka-si}
-     \end{figure}
-
-\vspace{20mm}
-これらの研究では, カメラ画像を入力とした学習器の出力により, ロボットが学習した経路を周回可能であることが示されている. \par しかし, 岡田らと清岡ら(以下｢従来手法｣と称する)の提案手法は, カメラ画像を入力とした学習器の出力で自律走行をするのに, 何周もロボットを走行させて学習する必要がある. これでは, 走行中にコースアウトしないか監視する必要や, 学習の時間が長くなるといった問題点がある. そこで, 本研究では, 従来手法を基に目標経路上及びその周辺のデータを一度に収集してオフラインで訓練する手法を提案する. 
+近年, 配膳ロボットや警備案内ロボットなどの需要が高まり, 自律的に移動できることが求められている. これらのロボットはLiDAR, ホイールオドメトリ, IMUなどの様々なセンサから得られるデータに基づいて作成された占有格子地図を用いてナビゲーションを行う. \par また, 本研究グループでは, end-to-end学習により, 視覚に基づく経路追従行動をオンラインで模倣する手法を提案し, その有効性を実験により検証してきた. 岡田らが提案した手法（以後, オンライン手法と呼ぶ）では\figref{Fig:old}に示すようなLiDARやホイールオドメトリなどを入力として生成したナビゲーションの行動を, カメラ画像を入力とする行動に模倣する\cite{okada-si2020}\cite{okada-si2021}. これにより, 地図を用いたナビゲーションと視覚に基づく経路追従行動の2つのナビゲーション手段が得られるため, 状況に応じて高い信頼性が見込まれる方を選択することで, 経路追従を継続できる可能性が高まる. 
 
 % \newpage
-% \section{関連研究}
-% Yunpeng Pan\cite{batch}らは, \figref{Fig:batch1}に示すシステムと\figref{Fig:net}にのようなネットワークにより, バッチ学習とオンライン学習を用いて, 高度なセンサーを備えたモデル予測制御を模倣した. これにより, \figref{Fig:batch2}のようにオフロードでの自律走行を獲得した. 
+% 岡田らは\figref{Fig:tsudanuma2-3}のように地図ベースのナビゲーションによる出力を模倣することで, 経路追従行動を獲得した\cite{okada-si2020}. \figref{Fig:okada-si2020}に示すような, LiDAR, オドメトリを入力としたナビゲーションの出力をend-to-endで模倣学習し, 学習後はカメラ画像を入力とした学習器の出力により, 一定の経路において周回が可能であることが確認された. 
 
-% \begin{figure}[h]
-%      \centering
-%      \includegraphics[keepaspectratio, scale=0.7]{images/batch1.png}
-%      \caption{Yunpeng Pan and others proposed method from \cite{batch}}
-%      \label{Fig:batch1}
-%      \end{figure}
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.35]
+     {images/old.png}
+     \caption{Path-tracking by end-to-end imitation learning}
+     \label{Fig:old}
+     \end{figure}
 
-% \begin{figure}[h]
-%      \centering
-%      \includegraphics[keepaspectratio, scale=0.5]{images/net.png}
-%      \caption{Yunpeng Pan and others proposed network from \cite{net}}
-%      \label{Fig:net}
-%      \end{figure}
+\section{関連研究}
+視覚を入力として, end-to-end学習により経路追従を模倣する手法をいくつか紹介する. \par Bojarskiらは人が操作したステアリングの角度をend-to-end学習することで経路追従する手法を提案した. \figref{Fig:bojaski}に示すように学習器に, 3つのカメラ（左・中央・右）の画像と対応するステアリングの角度を入力する. 学習後は出力されたステアリングの角度のみで自律走行することが確認された\cite{bojaski}. 
 
-% \begin{figure}[h]
-%      \centering
-%      \includegraphics[keepaspectratio, scale=0.7]{images/batch2.png}
-%      \caption{Autonomous off-road driving}
-%      \label{Fig:batch2}
-%      \end{figure}
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.5]
+     {images/bojaski.png}
+     \caption{Training the neural network from \cite{bojaski}}
+     \label{Fig:bojaski}
+     \end{figure}
 
-% @misc{batch,
-% author = {Yunpeng Pan and Ching-An Cheng and Kamil Saigol and Keuntaek Lee and Xinyan Yan and Evangelos A. Theodorou and Byron Boots},
-% title = {"Agile Autonomous Driving using
-% End-to-End Deep Imitation Learning''},
-% howpublished = {},
-% month = {},
-% year = {},
-% note = {30332–0250},
-% }
+また, Jing Biらは, 歩行者の多い環境における経路追従行動の模倣に取り組んだ. 具体的には, \figref{Fig:jing-bi}に示すようなフレームワークを用いて, \figref{Fig:pedestrian}のような歩行者のいる状況に合わせて, 人が操作しながらデータ収集を行う. ステージ1では「どの状況にいるのか」を判断する. ステージ2では分類結果に基づいて「具体的にどう動くか」を決定する. 経路から外れたり, 人と衝突したりなどのエラーに遭遇しそうな場合には人が介入を行う. そして, その介入の前後を含めてポリシーを更新する. これにより, 歩行者がいる場合でも経路追従できることが確認された. 
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.4]
+     {images/jing-bi.png}
+     \caption{Training the neural network from \cite{bojaski}}
+     \label{Fig:jing-bi}
+     \end{figure}
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.5]
+     {images/pedestrian.png}
+     \caption{Training the neural network from \cite{bojaski}}
+     \label{Fig:pedestrian}
+     \end{figure}
+
+% \vspace{20mm}
+これらの手法が人の手動操作を模倣しているのに対して, オンライン手法は自動運転を模倣する点が異なる. しかし, オンライン手法では, データ収集及び学習を行うために, ロボットを経路に沿って走行させ続けることが必要である. そのため, 経路追従の成功率を上げるためにロボットを長時間走行させ続ける必要があり, それが問題となっていた. 
 
 \newpage
 \section{目的}
-本研究では, 従来手法を基に目標経路上及びその周辺のデータを一度に収集してオフラインで訓練する手法を提案する. さらに訓練後に, カメラ画像を入力とした学習器の出力で自律走行させることで手法の有効性を検証することを目的とする. 
+本論文では, 事前に収集した画像と行動を用いて, 経路追従行動をオフラインで学習する手法（以後, オフライン手法と呼ぶ）を提案する. これにより, オンライン手法で問題となっていた学習時間の短縮を目指す. なお, オフラインで模倣学習することは, 他の研究でも行われていることであるが, そのデータセットを自動で収集する点が本手法の特徴である. 
 \section{論文構成}
 本論文の構成は以下に述べる通りである. 第1章では, 研究を行う背景や目的を述べた. 第2章では, 研究に関連する要素技術, 第3章では, 従来手法について説明する. 第4章では, 提案手法について説明し, 第5章では, 実験について説明する. そして, 第6章では, 本研究の結論を述べる. 
      
