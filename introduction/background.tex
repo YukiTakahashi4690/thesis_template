@@ -6,9 +6,10 @@
 % \newpage
 % 岡田らは\figref{Fig:tsudanuma2-3}のように地図ベースのナビゲーションによる出力を模倣することで, 経路追従行動を獲得した\cite{okada-si2020}. \figref{Fig:okada-si2020}に示すような, LiDAR, オドメトリを入力としたナビゲーションの出力をend-to-endで模倣学習し, 学習後はカメラ画像を入力とした学習器の出力により, 一定の経路において周回が可能であることが確認された. 
 
+\newpage
 \begin{figure}[h]
      \centering
-     \includegraphics[keepaspectratio, scale=0.35]
+     \includegraphics[keepaspectratio, scale=0.3]
      {images/old.png}
      \caption{Path-tracking by end-to-end imitation learning}
      \label{Fig:old}
@@ -19,7 +20,7 @@
 
 \begin{figure}[h]
      \centering
-     \includegraphics[keepaspectratio, scale=0.5]
+     \includegraphics[keepaspectratio, scale=0.45]
      {images/bojaski.png}
      \caption{Training the neural network from \cite{bojaski}}
      \label{Fig:bojaski}
@@ -31,19 +32,20 @@
      \centering
      \includegraphics[keepaspectratio, scale=0.4]
      {images/jing-bi.png}
-     \caption{Training the neural network from \cite{bojaski}}
+     \caption{Framework overview from \cite{bojaski}}
      \label{Fig:jing-bi}
      \end{figure}
 
 \begin{figure}[h]
      \centering
-     \includegraphics[keepaspectratio, scale=0.5]
+     \includegraphics[keepaspectratio, scale=0.4]
      {images/pedestrian.png}
-     \caption{Training the neural network from \cite{bojaski}}
+     \caption{Robot navigation in a pedestrian environment from \cite{bojaski}}
      \label{Fig:pedestrian}
      \end{figure}
 
 % \vspace{20mm}
+\newpage
 これらの手法が人の手動操作を模倣しているのに対して, オンライン手法は自動運転を模倣する点が異なる. しかし, オンライン手法では, データ収集及び学習を行うために, ロボットを経路に沿って走行させ続けることが必要である. そのため, 経路追従の成功率を上げるためにロボットを長時間走行させ続ける必要があり, それが問題となっていた. 
 
 \newpage
