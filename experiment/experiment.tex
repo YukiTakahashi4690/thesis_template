@@ -1,10 +1,10 @@
 %!TEX root = ../thesis.tex
 
-\section{実験目的}
-シミュレータ上で実験を行い, 提案手法の有効性を検証する.
+\section{実験概要}
+本章では, 提案手法の有効性を検証する. そのためにシミュレータを用いた実験を行う. 実験はロボットの位置と向きを組み合わせた全8パターンで検証する. それぞれの組み合わせでデータを収集して学習し, 成功率を比較する. 
 
 \section{実験装置}
-実験は, \figref{Fig:gazebo}に示すGazebo\cite{gazebo}のWillow Garage\cite{willow}で\figref{Fig:willow-garage}に示すコースで一周行う. また, ロボットモデルには\figref{Fig:turtlebot3}に示すようなカメラを3つ搭載したTurtlebot3\cite{turtlebot3}を用いた. 
+実験環境は, \figref{Fig:gazebo}に示すGazebo\cite{gazebo}のWillow Garage\cite{willow}を使用した. コースは\figref{Fig:willow-garage}に示したルートで行う. ロボットモデルには\figref{Fig:turtlebot3}に示すようなカメラを1つ搭載したTurtlebot3\cite{turtlebot3}を用いた. 
 
 \begin{figure}[h]
   \centering
@@ -24,21 +24,21 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.55]{images/turtlebot3.png}
-  \caption{Turtlebot3 waffle with 3 cameras}
+  \includegraphics[keepaspectratio, scale=0.55]{images/1cam_turtlebot3.png}
+  \caption{Turtlebot3 waffle with a camera}
   \label{Fig:turtlebot3}
   \end{figure}
 
 \newpage
 \section{実験方法}
 \begin{description}
-  \item[1）データ収集]\mbox{}\\データの収集方法について述べる. \figref{Fig:old-method}にデータの収集方法を示す. 図のようにロボットを目標経路上と目標経路から±0.1[m], ±0.2[m], ±0.3[m]の位置に配置する. 位置に関する実験条件は, 以下の4種類となる. 
+  \item[1）データ収集]\mbox{}\\ \hspace*{3mm}データの収集方法について述べる. \figref{Fig:old-method}にデータの収集方法を示す. 図のようにロボットを目標経路上と目標経路から±0.1[m], ±0.2[m], ±0.3[m]の位置に配置する. 位置に関する実験条件は, 以下の4種類となる. 
   \par (a)目標経路上のみ
   \par (b)目標経路上と目標経路から±0.1[m]の位置
   \par (c)目標経路上と目標経路から±0.2[m]の位置
   \par (d)目標経路上と目標経路から±0.3[m]の位置
   \vskip\baselineskip
-  \par また, 各位置において, 目標経路の向きを基準として, ロボットをヨー方向に0[deg]と±5[deg]回転させる. 角度に関する実験条件は, 以下の2種類となる. 
+  \par \hspace*{3mm}また, 各位置において, 目標経路の向きを基準として, ロボットをヨー方向に0[deg]と±5[deg]回転させる. 角度に関する実験条件は, 以下の2種類となる. 
   \par (e)目標経路の向きと±5[deg]回転させた向き
   \par (f)目標経路の向きのみ
 \end{description}
@@ -51,12 +51,12 @@
   \end{figure}
 
 \begin{description}
-  \item[2）訓練]\mbox{}\\収集したデータ2を用いて, バッチ学習を4000step行う. なお, オンライン手法では同様の条件で8000step行っていた. オフライン手法では, 後に述べるように4000stepでlossがほぼ収束するため, 4000stepを採用した.
+  \item[2）訓練]\mbox{}\\ \hspace*{3mm}収集したデータを用いて, バッチ学習を4000step行う. なお, オンライン手法では同様の条件で8000step行っていた. オフライン手法では, 後に述べるように4000stepでlossがほぼ収束するため, 4000stepを採用した.
 \end{description}
 
 \begin{description}
-  \item[3）テスト]\mbox{}\\ 学習したモデルを用いてロボットを走行させ, \figref{Fig:willow-garage}に示した目標経路を追従できるかを検証する. ロボットの並進速度0.2m/sとし, 経路を1周できた場合を成功とし, 壁に激突した場合を失敗とした.
-  \par 上記の2）学習と3）テストを30回行い, 経路追従の成功回数を求めた. 
+  \item[3）テスト]\mbox{}\\ \hspace*{3mm}学習したモデルを用いてロボットを走行させ, \figref{Fig:willow-garage}に示した目標経路を追従できるかを検証する. ロボットの並進速度0.2m/sとし, 経路を1周できた場合を成功とし, 壁に激突した場合を失敗とした.
+  \par \hspace*{3mm}上記の2）学習と3）テストを30回行い, 経路追従の成功回数を求めた. 
 \end{description}
 
 \section{実験結果と考察}
@@ -87,3 +87,9 @@
 が低くなっている. また, 目標経路上の画像しか使用しない条件(位置0[m])では, ほとんど成功していない. それ以外の実験条件でも, カメラ間の距離により成功率が変化する様子が見られているが, この原因の究明は今後の課題としたい. 
 
 \section{まとめ}
+本章では, 事前に収集した画像と行動を用いて, end-to-end学習により経路追従行動をオフラインで模倣学習する手法に関して検討した. シミュレータを用いた実験により, 以下のことを確認した. 
+
+\begin{itemize}
+  \item 目標経路上及び±0.2[m]の位置, 0[deg]及び±5[deg]の向きの視覚情報があれば経路追従できることを確認
+  \item オンライン手法で問題となっていた学習に要する時間を1/10に短縮できることを確認
+\end{itemize}
