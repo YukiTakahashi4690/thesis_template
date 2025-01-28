@@ -1,30 +1,43 @@
 %!TEX root = ../thesis.tex
 
+\section{手法}
+本研究で検証するオフライン手法に関して述べる. オンライン手法と比べて, オフライン手法は画像と目標角速度のデータを事前に収集して, 学習するところが異なる. \figref{Fig:collect-data2}にシミュレータを用いて収集するデータを示す. 目標経路(赤線)から一定距離の位置にロボットを配置して, さらに目標経路の方向を基準として, ヨー方向に一定量回転する. その時の中央のカメラの画像と, 目標角速度を収集してデータセットに加える. ちなみに, 本手法でデータを収集するためには, 非常に多くのロボットの置き直しをしなければならない. これを, 実ロボットに応用する際には, 1台のロボットに複数のカメラを搭載して, 経路から一定距離離れた画像を収集する. そうすることで, 置き直ししなくても経路を走行すればデータを集められる. そのため,実ロボットへの応用も可能であると考える. このように収集したデータセットを用いてオフラインで学習する. なお,リアルタイム性に配慮して, オンライン手法ではバッチサイズ8のミニバッチ学習を行っていたが, オフライン学習ではリアルタイム性は必要ないため, バッチ学習を行う. 
+
+% \vspace{10mm}
+\newpage
+  \begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.2]{images/collect-data2.png}
+  \caption{Data collected by the simulator in the learning phase}
+  \label{Fig:collect-data2}
+  \end{figure}
+
 \section{実験概要}
 本章では, 提案手法の有効性を検証する. そのためにシミュレータを用いた実験を行う. 実験はロボットの位置と向きを組み合わせた全8パターンで検証する. それぞれの組み合わせでデータを収集して学習し, 成功率を比較する. 
 
 \section{実験装置}
 実験環境は, \figref{Fig:gazebo}に示すGazebo\cite{gazebo}のWillow Garage\cite{willow}を使用して, \figref{Fig:willow-garage}に示す赤線を目標経路として実験する. ロボットモデルには\figref{Fig:turtlebot3}に示すようなカメラを1つ搭載したTurtlebot3\cite{turtlebot3}を用いた. 
 
+\newpage
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.15]{images/gazebo.png}
+  \includegraphics[keepaspectratio, scale=0.13]{images/willow.png}
   \caption{Experimental environment in simulator}
   \label{Fig:gazebo}
   \end{figure}
 
-\newpage
-\vspace{20mm}
+% \newpage
+% \vspace{20mm}
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.5]{images/willow-path.png}
+  \includegraphics[keepaspectratio, scale=0.35]{images/willow-path.png}
   \caption{Course to collect data}
   \label{Fig:willow-garage}
   \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.55]{images/1cam_turtlebot3.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/1cam_turtlebot3.png}
   \caption{Turtlebot3 waffle with a camera}
   \label{Fig:turtlebot3}
   \end{figure}
