@@ -19,7 +19,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.55]{images/turtlebot3.png}
+  \includegraphics[keepaspectratio, scale=0.5]{images/turtlebot3.png}
   \caption{Turtlebot3 waffle with 3 cameras}
   \label{Fig:turtlebot3_3cam}
 \end{figure}
@@ -28,7 +28,7 @@
 本章では, 上記でも述べた条件で実験を行い手法の有効性を検証する. 
 
 \begin{description}
-  \item[1）データ収集]\mbox{}\\ \hspace*{3mm}まず, 学習に使用する角速度について述べる. 角速度は, 収集した角速度に各位置と向きを考慮して, オフセットを加える. オフセットの値は\ref{tb:offset}に示す. なお, オフセットの値は前章の実験を基に決定した. \par \hspace*{3mm}次に, カメラ画像に関して述べる. カメラの数を3つにし, それぞれの画角を120度から130度に広げる. 画像サイズは640×480から694×520に変更する. また, \figref{Fig:crop}のように画像の中央及び左右にそれぞれ640×480で画像を切り抜いて64×48にリサイズする. 
+  \item[1）データ収集]\mbox{}\\ \hspace*{3mm}まず, 学習に使用する角速度について述べる. 角速度は, 収集した角速度に各位置と向きを考慮して, オフセットを加える. オフセットの値は\ref{tb:offset}に示す. なお, オフセットの値は前章の実験を基に決定した. \par \hspace*{3mm}次に, カメラ画像に関して述べる. ロボットの進行方向と垂直な方向に, 中央のカメラの位置を基準として, ±0.2[m]の位置にカメラを増やし, それぞれの画角を120度から130度に広げる. 画像サイズは640×480から694×520に変更する. また, \figref{Fig:crop}のように画像の中央及び左右にそれぞれ640×480で画像を切り抜いて64×48にリサイズする. 
 \end{description}
 
 \begin{figure}[h]
@@ -50,6 +50,7 @@
   \label{tb:offset}
 \end{table}
 
+\newpage
 \begin{description}
   \item[2）訓練]\mbox{}\\ \hspace*{3mm}収集したデータを用いて, バッチ学習を4000step行う. 
 \end{description}
