@@ -26,13 +26,13 @@
      \label{Fig:bojaski}
      \end{figure}
 
-また, Jing Biらは, 歩行者の多い環境における経路追従行動の模倣に取り組んだ. 具体的には, \figref{Fig:jing-bi}に示すようなフレームワークを用いて, \figref{Fig:pedestrian}のような歩行者のいる状況に合わせて, 人が操作しながらデータ収集を行う. ステージ1では「どの状況にいるのか」を判断する. ステージ2では分類結果に基づいて「具体的にどう動くか」を決定する. 経路から外れたり, 人と衝突したりなどのエラーに遭遇しそうな場合には人が介入を行う. そして, その介入の前後を含めてポリシーを更新する. これにより, 歩行者がいる場合でも経路追従できることが確認された. 
+また, Jing Biらは, 歩行者の多い環境における経路追従行動の模倣に取り組んだ. 具体的には, \figref{Fig:jing-bi}に示すようなフレームワークを用いて, \figref{Fig:pedestrian}のような歩行者のいる状況に合わせて, 人が操作しながらデータ収集を行う. ステージ1では「どの状況にいるのか」を判断する. ステージ2では分類結果に基づいて「具体的にどう動くか」を決定する. 経路から外れたり, 人と衝突したりなどのエラーに遭遇しそうな場合には人が介入を行う. そして, 介入の前後を含めてポリシーを更新する. これにより, 歩行者がいる場合でも経路追従できることが確認された\cite{Jing}. 
 
 \begin{figure}[h]
      \centering
      \includegraphics[keepaspectratio, scale=0.4]
      {images/jing-bi.png}
-     \caption{Framework overview from \cite{bojaski}}
+     \caption{Framework overview from \cite{Jing}}
      \label{Fig:jing-bi}
      \end{figure}
 
@@ -40,7 +40,7 @@
      \centering
      \includegraphics[keepaspectratio, scale=0.4]
      {images/pedestrian.png}
-     \caption{Robot navigation in a pedestrian environment from \cite{bojaski}}
+     \caption{Robot navigation in a pedestrian environment from \cite{Jing}}
      \label{Fig:pedestrian}
      \end{figure}
 

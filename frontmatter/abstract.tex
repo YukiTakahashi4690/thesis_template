@@ -10,7 +10,7 @@
 \vspace{1.0zh}
 %
 
-本論文では, 事前に収集した画像と行動を用いて, 経路追従行動をオフラインで模倣学習する手法を提案する. また, 
+本論文では, 事前に収集した画像と行動を用いて, 経路追従行動をオフラインで模倣学習する手法を提案する. また, 実ロボットに提案手法を適用することを念頭においているため, 実環境を想定した実験において有効であるかも検証する. 本研究グループでは, end-to-end学習により, 視覚に基づく経路追従行動をオンラインで模倣する手法を提案し, その有効性を実験により検証してきた. 従来手法では, データ収集及び学習を行うために, ロボットを経路に沿って走行させ続けることが必要であった. そのため, 経路追従の成功率を上げるためにはロボットを長時間走行させることが必要で, それが問題となっていた. 本論文では, 事前に収集した画像と行動を用いて,経路追従行動をオフラインで学習する手法に関して検討する. これにより, 従来手法で問題となっていた学習時間の短縮を目指す. シミュレーションを用いた実験により, 提案手法の有効性を検証した. 結果として, 学習時間を大幅に短縮することができ, 提案手法が有効であることを確認した. また, 実環境を想定した実験においても, 提案手法の有効性を検証した. 
 % 近年, 自律移動ロボットの研究が盛んに行われている. 本研究室においても, 2D-LiDARを用いた自律移動システムの出力を教師信号としてロボットに与えて学習させることで, 経路追従行動をオンラインで模倣する手法を提案し, 実験によりその有効性を確認してきた. 本研究では, 従来手法を基に, 目標とする経路上及び周辺のデータを一度に収集し, オフラインで訓練する手法を提案する. 提案手法では, 経路上にロボットを配置し, カメラ画像と教師データとなる目標角速度を収集する. それらのデータを基にオフラインで学習を行い, 学習後はカメラ画像を入力とした学習器の出力により自律移動させることで, 手法の有効性を検証する. 
 
 \vspace{10mm}
@@ -29,7 +29,7 @@
 \vspace{1.0zh}
 %
 
-Recently, autonomous mobile robots have been studied extensively. In our laboratory, we have proposed an online imitation method of path-following behavior by training a robot with the output of a 2D-LiDAR-based autonomous mobile system as a teacher signal, and have confirmed the effectiveness of the proposed method through experiments. In this study, we propose an off-line training method based on the conventional method by collecting data on and around the target path at a time. In the proposed method, the robot is placed on the path, and camera images and target angular velocity are collected as teacher data. The effectiveness of the proposed method is verified by training the robot off-line based on these data, and after training, the robot moves autonomously by using the output of the trainer with camera images as input. 
+In this paper, we propose an off-line imitation learning method for path-following behavior using pre-collected images and actions. Since we intend to apply the proposed method to a real robot, we also verify the effectiveness of the method in experiments under realistic conditions. We have proposed an online imitation method of vision-based path-following behavior by end-to-end learning, and have verified the effectiveness of the proposed method through experiments. Conventional methods require the robot to keep running along the path in order to collect data and perform learning. Therefore, the robot needs to run for a long time to improve the success rate of path following, which has been a problem. In this paper, we discuss a method for learning path-following behaviors off-line using pre-collected images and behaviors. We aim to reduce the learning time, which has been a problem with conventional methods. We have verified the effectiveness of the proposed method through experiments using simulations. As a result, we confirmed that the proposed method is effective in significantly reducing the learning time. The effectiveness of the proposed method is also verified by experiments under realistic conditions. Translated with DeepL.com (free version) 
 
 \vspace{10mm}
 keywords: End-to-end learning, Navigation, Offline 
