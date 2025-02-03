@@ -22,6 +22,13 @@
   \label{Fig:change}
 \end{figure}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.35]{images/9cam_draw.png}
+  \caption{9cameras}
+  \label{Fig:9cam}
+\end{figure}
+
 \newpage
 \subsection{実験結果と考察}
 実験結果を\tabref{tb:inves}に示す. 分母の30は実験回数を示しており, 分子の数は成功回数を示している. 結果的に, 実験3, 実験4, 実験5の成功回数はいずれも30回中0回となった. 失敗した箇所も, 概ね実験2と同様に, 直進時に目標経路から外れて, 壁に衝突して失敗した. \figref{Fig:sample3}, \figref{Fig:sample4}, \figref{Fig:sample5}に, 実験3, 実験4, 実験5それぞれの条件で学習した際のlossのグラフを示す. 図から初期でlossが減少に急激して, その後はlossがほぼ変化していないことがわかる. 
@@ -103,7 +110,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.55]{images/sample.png}
+  \includegraphics[keepaspectratio, scale=0.55]{images/9cam_19.png}
   \caption{Loss value in the experiment5}
   \label{Fig:sample5}
 \end{figure}
