@@ -9,10 +9,10 @@
 \par 原因の調査を行うために, シミュレータを用いた実験を行う. 実験環境, 実験装置は前章と同様のシミュレータ環境を用いる.また, 学習器の訓練条件, 学習したモデルを用いたテストなどの条件は前章と同様とする. 実験条件は以下の通りである. 
 
 \begin{description}
-  \item[実験3）] 実験1の目標角速度と実験2のカメラ画像の組み合わせ
-  \item[実験4）] 実験1のカメラ画像と実験2の目標角速度の組み合わせ
-  \item[実験5）] 実験1のカメラ画像と実験1の目標角速度の0[m], 0[deg]を\par \hspace*{6mm}実験2の目標角速度と入れ替え
-  \item[実験6）] 9個のカメラ画像と実験2のオフセットのパターン
+  \item[実験3] 実験1の目標角速度と実験2のカメラ画像の組み合わせ
+  \item[実験4] 実験1のカメラ画像と実験2の目標角速度の組み合わせ
+  \item[実験5] 実験1のカメラ画像と実験1の目標角速度の0[m], 0[deg]を\par \hspace*{6mm}実験2の目標角速度と入れ替え
+  \item[実験6] 9個のカメラ画像と実験2のオフセットのパターン
 \end{description}
 
 \begin{figure}[h]
@@ -90,7 +90,7 @@
     \includegraphics[keepaspectratio, scale=0.33]{images/mazemaze/traject8.png}
     \subcaption{}
   \end{minipage}
-\caption{Example of failed path-tracking for experiment5}
+\caption{Example of successful and failed path-tracking for experiment5}
 \label{Fig:fail5}
 \end{figure}
 
@@ -111,14 +111,14 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.4]{images/exp3_25.png}
+  \includegraphics[keepaspectratio, scale=0.33]{images/exp3_25.png}
   \caption{Loss value in the experiment3}
   \label{Fig:loss3}
 \end{figure}
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.4]{images/00_02_rename_9.png}
+  \includegraphics[keepaspectratio, scale=0.33]{images/00_02_rename_9.png}
   \caption{Loss value in the experiment4}
   \label{Fig:loss4}
 \end{figure}
@@ -126,12 +126,12 @@
 \begin{figure}[h]
   \begin{minipage}[b]{0.45\linewidth}
     \centering
-    \includegraphics[keepaspectratio, scale=0.4]{images/mazemaze_1.png}
+    \includegraphics[keepaspectratio, scale=0.33]{images/mazemaze_1.png}
     \subcaption{}
   \end{minipage}
   \begin{minipage}[b]{0.45\linewidth}
     \centering
-    \includegraphics[keepaspectratio, scale=0.4]{images/mazemaze_8.png}
+    \includegraphics[keepaspectratio, scale=0.33]{images/mazemaze_8.png}
     \subcaption{}
   \end{minipage}
 \caption{Loss value in the experiment5}
@@ -140,7 +140,7 @@
 
 \begin{figure}[h]
   \centering
-  \includegraphics[keepaspectratio, scale=0.4]{images/9cam_19.png}
+  \includegraphics[keepaspectratio, scale=0.33]{images/9cam_19.png}
   \caption{Loss value in the experiment6}
   \label{Fig:loss6}
 \end{figure}
