@@ -9,10 +9,10 @@
 \par 原因の調査を行うために, シミュレータを用いた実験を行う. 実験環境, 実験装置は前章と同様のシミュレータ環境を用いる.また, 学習器の訓練条件, 学習したモデルを用いたテストなどの条件は前章と同様とする. 実験条件は以下の通りである. 
 
 \begin{description}
-  \item[実験3）] 実験1の目標角速度と実験2のカメラ画像の組み合わせの実験
-  \item[実験4）] 実験1のカメラ画像と実験2の目標角速度の組み合わせの実験
-  \item[実験5）] 
-  \item[実験6）] カメラを9個にした実験
+  \item[実験3）] 実験1の目標角速度と実験2のカメラ画像の組み合わせ
+  \item[実験4）] 実験1のカメラ画像と実験2の目標角速度の組み合わせ
+  \item[実験5）] 実験1のカメラ画像と実験1の目標角速度の0[m], 0[deg]を\par \hspace*{6mm}実験2の目標角速度と入れ替え
+  \item[実験6）] 9個のカメラ画像と実験2のオフセットのパターン
 \end{description}
 
 \begin{figure}[h]
@@ -70,6 +70,21 @@
   \end{minipage}
 \caption{Example of failed path-tracking}
 \label{Fig:fail4}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[keepaspectratio, scale=0.35]{images/9cam/traject19.png}
+    \subcaption{}
+  \end{minipage}
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[keepaspectratio, scale=0.35]{images/9cam/traject26.png}
+    \subcaption{}
+  \end{minipage}
+\caption{Example of failed path-tracking}
+\label{Fig:fail6}
 \end{figure}
 
 \begin{figure}[h]
