@@ -8,7 +8,7 @@
   \begin{figure}[h]
   \centering
   \includegraphics[keepaspectratio, scale=0.3]{images/offline.png}
-  \caption{Data collected by the simulator in the learning phase}
+  \caption{Data collected by the simulator in the learning phase（source :\cite{offline}）}
   \label{Fig:collect-data2}
   \end{figure}
 
@@ -59,7 +59,7 @@
 \begin{figure}[h]
   \centering
   \includegraphics[keepaspectratio, scale=0.6]{images/collect2.png}
-  \caption{Location and orientation of the robot in the experiments}
+  \caption{Location and orientation of the robot in the experiments（source :\cite{offline}）}
   \label{Fig:old-method}
   \end{figure}
 
@@ -72,7 +72,7 @@
 \end{description}
 
 \section{実験結果と考察}
-実験結果を表\ref{tb:exp1}に示す. 列は位置の4条件(a)~(d)を並べたものであり, 行は方向の2条件(e), (f)を並べたものである. 分母の30は実験回数を示しており, 分子の数は成功回数を示している. 結果的に, 目標経路上及び±0.2[m]の位置, 0[deg]及び±5[deg]の向きに, ロボットを配置する条件で100％（30回中30回）成功している. これは, オンライン手法において最も高い成功率100％\cite{okada-si2021}と同じである. オンライン手法が40分程度必要なのに対して, オフライン手法での学習時間は4分程度であったことから, 学習に要する時間を1/10に短縮できることを確認できた. ただし, オフライン手法での学習時間4分には, 実験方法で述べたデータ収集は含まれていない. 
+実験結果を\tabref{tb:exp1}に示す. 列は位置の4条件(a)~(d)を並べたものであり, 行は方向の2条件(e), (f)を並べたものである. 分母の30は実験回数を示しており, 分子の数は成功回数を示している. 結果的に, 目標経路上及び±0.2[m]の位置, 0[deg]及び±5[deg]の向きに, ロボットを配置する条件で100％（30回中30回）成功している. これは, オンライン手法において最も高い成功率100％\cite{okada-si2021}と同じである. オンライン手法が40分程度必要なのに対して, オフライン手法での学習時間は4分程度であったことから, 学習に要する時間を1/10に短縮できることを確認できた. ただし, オフライン手法での学習時間4分には, 実験方法で述べたデータ収集は含まれていない. 
 
 \begin{table}[h]
   \centering
@@ -91,11 +91,11 @@
 \begin{figure}[h]
   \centering
   \includegraphics[keepaspectratio, scale=0.35]{images/loss_00_02_4000.png}
-  \caption{Loss value in the experiment}
+  \caption{Loss value in the experiment（source :\cite{offline}）}
   \label{Fig:loss_00_02_4000}
   \end{figure}
 
-また, \ref{tb:exp1}の他の結果を見ると, 30回成功した実験条件(位置0[m], ±0.2[m], 向き0[m], ±5[deg])から離れるほど成功率が低くなっている. 特にカメラの方向が0[deg]のみの場合は顕著に成功率
+また, \tabref{tb:exp1}の他の結果を見ると, 30回成功した実験条件(位置0[m], ±0.2[m], 向き0[m], ±5[deg])から離れるほど成功率が低くなっている. 特にカメラの方向が0[deg]のみの場合は顕著に成功率
 が低くなっている. また, 目標経路上の画像しか使用しない条件(位置0[m])では, ほとんど成功していない. それ以外の実験条件でも, カメラ間の距離により成功率が変化する様子が見られているが, この原因の究明は今後の課題としたい. 
 
 \section{まとめ}

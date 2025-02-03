@@ -1,16 +1,5 @@
 %!TEX root = ../thesis.tex
 
-\section{地図を用いたルールベース制御器によるナビゲーション}
-教師信号としている地図を用いたルールベース制御器によるナビゲーションについて説明する. このナビゲーションには, ROSのパッケージであるnavigation\cite{navigation}を使用している. 移動ロボットは, \figref{Fig:navigation}のようにLiDARのスキャンデータやオドメトリを入力として自己位置推定と経路計画を行い, これらに基づいて自律走行をする. また, 自己位置推定には, amcl(Adaptive Monte Carlo Localization), 経路計画とモータ指令にはmove\_base\cite{navigation}を使用している. 
-
-\begin{figure}[h]
-     \centering
-     \includegraphics[keepaspectratio, scale=0.3]
-     {images/navigation.png}
-     \caption{Map based navigation using navigation package}
-     \label{Fig:navigation}
-     \end{figure}
-
 \section{ディープラーニング}
 ディープラーニングとは, 人間の神経細胞を模したネットワーク構造のことである. 主に, 入力層と出力層, その間に中間層(隠れ層)という構成である. 中間層を多層化することで, 複雑な入力情報を処理し, パターンを認識することや, ルールを読み解くことができる. 近年では, 画像や物体認識, 自然言語処理などで活用されている. \figref{Fig:dl}に構造の一例を示す. 
 
@@ -56,7 +45,7 @@ end-to-end学習とは, 入力から出力までの流れを一括に学習す�
      \centering
      \includegraphics[keepaspectratio, scale=0.5]
      {images/mnist.png}
-     \caption{MNIST dataset from \cite{mnist}}
+     \caption{MNIST dataset（source: \cite{mnist}）}
      \label{Fig:mnist}
      \end{figure}
 
@@ -67,3 +56,16 @@ end-to-end学習とは, 入力から出力までの流れを一括に学習す�
 % ミニバッチ学習とは, 訓練データをいくつかのグループ(バッチ)に分けて順番に学習を行うことである. 特徴としては, 勾配更新の頻度が高く, 計算量が少なくて済むといったことが挙げられる. これらの特徴を踏まえて, 先行研究ではオンラインで学習を行うことから, ミニバッチ学習を使用している.
 \section{バッチ学習}
 バッチ学習とは, 訓練データを一括で処理する学習方法である. 特徴として, 一度に大量のデータを扱うことができるため学習の進行が安定しやすく, 訓練データに異常データが混じっていても受ける影響が小さくて済むなどが挙げられる. また, バッチ学習ではバッチサイズがデータ数となることが多い. 
+
+\section{地図を用いたルールベース制御器によるナビゲーション}
+地図を用いたルールベース制御器によるナビゲーションについて説明する. このナビゲーションには, ROSのパッケージであるnavigation\cite{navigation}を使用している. 移動ロボットは, LiDARやホイールオドメトリなどのセンサデータを使用して作成した占有格子地図を用いて目的地まで移動する. そして, 移動ロボットは\figref{Fig:navigation}のように, LiDARやホイールオドメトリなどのセンサデータを入力として, 自己位置推定と経路計画を行い, それらに基づいて自律移動をする. 自己位置推定にはパーティクルフィルタを用いたモンテカルロ自己位置推定（MCL）\cite{mcl1}\cite{mcl2}, 経路計画とモータ指令にはmove\_base\cite{navigation}を使用している.  経路計画では, 動的計画法によって壁や障害物を回避するように経路を生成する. モータ指令は, 生成された経路に従って速度制御を行っている.
+
+% 地図を用いたルールベース制御器によるナビゲーションについて説明する. このナビゲーションには, ROSのパッケージであるnavigation\cite{navigation}を使用している. 移動ロボットは, \figref{Fig:navigation}のようにLiDARのスキャンデータやオドメトリを入力として自己位置推定と経路計画を行い, これらに基づいて自律走行をする. また, 自己位置推定には, amcl(Adaptive Monte Carlo Localization), 経路計画とモータ指令にはmove\_base\cite{navigation}を使用している. 
+
+\begin{figure}[h]
+     \centering
+     \includegraphics[keepaspectratio, scale=0.3]
+     {images/navigation.png}
+     \caption{Map based navigation using navigation package}
+     \label{Fig:navigation}
+     \end{figure}
