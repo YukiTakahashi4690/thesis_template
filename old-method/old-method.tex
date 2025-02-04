@@ -21,9 +21,17 @@
 
   \newpage
 \section{ネットワークの構造}
-\figref{Fig:cnn}に従来手法で用いたネットワークの構造を示す. 構造は, 入力層1, 畳み込み層3, 全結合層2, 出力層1の計7層から構成されている. また, オンラインで学習が行えるように, ネットワークは畳み込みニューラルネットワーク(CNN)を基にしている. 
+オンライン手法で用いた学習器のネットワーク構造について説明する. オンライン手法では, \figref{Fig:end-end_cnn}に示すように, 画像を入力, 角速度を出力としてend-to-end-学習する. そこで, 使用するネットワークを\figref{Fig:cnn}に示す. ネットワーク構造は, 入力層1, 畳み込み層3, 全結合層2, 出力層1の計7層から構成されている. また, オンラインで学習が行えるように, ネットワークは畳み込みニューラルネットワーク(CNN)を基にしている. 
 
 \vspace{10mm}
+\begin{figure}[h]
+  \centering
+  \includegraphics[keepaspectratio, scale=0.3]{images/end-to-end_net.png}
+  \caption{Imitatation of angular velocity of navigation using end-to-end learning}
+  \label{Fig:end-end_cnn}
+  \end{figure}
+
+% \vspace{10mm}
 \begin{figure}[h]
   \centering
   \includegraphics[keepaspectratio, scale=0.6]{images/cnn.png}
